@@ -1,10 +1,13 @@
 package br.com.lanchonete.producao.bdd.steps;
 
-import br.com.lanchonete.producao.bdd.helper.RequestHelper;
-import br.com.lanchonete.producao.core.enums.StatusDoPedido;
 import br.com.lanchonete.producao.adapters.dto.ClienteDto;
 import br.com.lanchonete.producao.adapters.dto.PedidoResponseDTO;
 import br.com.lanchonete.producao.adapters.dto.ProdutoResponseDTO;
+import br.com.lanchonete.producao.adapters.dto.requests.PedidoRequestDto;
+import br.com.lanchonete.producao.adapters.dto.requests.ProdutoRequestDto;
+import br.com.lanchonete.producao.bdd.helper.RequestHelper;
+import br.com.lanchonete.producao.core.enums.CategoriaProduto;
+import br.com.lanchonete.producao.core.enums.StatusDoPedido;
 import io.cucumber.java.pt.Dado;
 import io.cucumber.java.pt.E;
 import io.cucumber.java.pt.Entao;
@@ -14,7 +17,9 @@ import org.springframework.http.HttpMethod;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.HttpStatusCode;
 
+import java.math.BigDecimal;
 import java.util.Arrays;
+import java.util.List;
 import java.util.Objects;
 
 public class PedidoStepDefinition {
@@ -131,4 +136,53 @@ public class PedidoStepDefinition {
     public void conterUmErroDaMensagemContendo(String mensagemErro) {
         Assert.assertTrue("Mensagem de erro deve conter", Objects.requireNonNull(this.requestListHelper.getErrorResponse().getMessage()).contains(mensagemErro));
     }
+
+    @Quando("enviar uma requisição para criar um pedido para um cliente com o cpf {string} com o produto inexistente")
+    public void enviarUmaRequisicaoParaCriarUmPedidoParaUmClienteComOCpfComOProdutoInexistente(String cpf) {
+        var produtoHamburguer = criarProdutoRequest("Hambúrguer", CategoriaProduto.LANCHE, BigDecimal.valueOf(32.5));
+        var produtoBatataFrita = criarProdutoRequest("Batata Frita", CategoriaProduto.ACOMPANHAMENTO, BigDecimal.valueOf(15.0));
+
+        PedidoRequestDto pedidoDTO = new PedidoRequestDto();
+        pedidoDTO.setCliente(ClienteDto.builder().nome("Nome").sobrenome("Sobrenome").cpf(cpf).email("nome.sobrenome@test.com").build());
+        pedidoDTO.setProdutos(Arrays.asList(produtoHamburguer, produtoBatataFrita));
+
+        this.requestSingleHelper = RequestHelper
+                .realizar(PATCH, HttpMethod.POST, pedidoDTO, PedidoResponseDTO.class);
+    }
+
+    @Quando("enviar uma requisição para criar um pedido para um cliente com o cpf {string} com o produto encontrado")
+    public void criarPedidoParaCpfInvalido(String cpf) {
+        var produtoHamburguer = criarProdutoRequest("Hambúrguer", CategoriaProduto.LANCHE, BigDecimal.valueOf(32.5));
+        var produtoBatataFrita = criarProdutoRequest("Batata Frita", CategoriaProduto.ACOMPANHAMENTO, BigDecimal.valueOf(15.0));
+
+        PedidoRequestDto pedidoDTO = new PedidoRequestDto();
+        pedidoDTO.setCliente(ClienteDto.builder().nome("Nome").sobrenome("Sobrenome").cpf(cpf).email("nome.sobrenome@test.com").build());
+        pedidoDTO.setProdutos(Arrays.asList(produtoHamburguer, produtoBatataFrita));
+
+        this.requestSingleHelper = RequestHelper
+                .realizar(PATCH, HttpMethod.POST, pedidoDTO, PedidoResponseDTO.class);
+
+    }
+    @Quando("enviar uma requisição para criar um pedido para o cliente encontrado com o produto encontrado")
+    public void enviarRequisicaoDeCriacao() {
+        var produtoHamburguer = criarProdutoRequest("Hambúrguer", CategoriaProduto.LANCHE, BigDecimal.valueOf(32.5));
+        var produtoBatataFrita = criarProdutoRequest("Batata Frita", CategoriaProduto.ACOMPANHAMENTO, BigDecimal.valueOf(15.0));
+
+        PedidoRequestDto pedidoDTO = new PedidoRequestDto();
+        pedidoDTO.setCliente(ClienteDto.builder().nome("Nome").sobrenome("Sobrenome").cpf(clienteEncontrado.getCpf()).email("nome.sobrenome@test.com").build());
+        pedidoDTO.setProdutos(Arrays.asList(produtoHamburguer, produtoBatataFrita));
+
+        this.requestSingleHelper = RequestHelper
+                .realizar(PATCH, HttpMethod.POST, pedidoDTO, PedidoResponseDTO.class);
+
+    }
+
+    private ProdutoRequestDto criarProdutoRequest(String nome, CategoriaProduto categoria, BigDecimal preco) {
+        ProdutoRequestDto produto = new ProdutoRequestDto();
+        produto.setNome(nome);
+        produto.setCategoria(categoria);
+        produto.setImagem("");
+        return produto;
+    }
+
 }
