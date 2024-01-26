@@ -5,20 +5,15 @@
 <img src="https://img.shields.io/badge/Java-17-important.svg?logo=java" alt="shield referente a versao do java">
 <img src="https://img.shields.io/badge/Build Tool-Gradle-green.svg?logo=gradle" alt="shield referente ao uso de gradle">
 
-[<img src="https://img.shields.io/badge/dockerhub-images-blue.svg?logo=docker" alt="shield referente ao docker hub">](https://hub.docker.com/repository/docker/danielmaria/postech-lanchonete-producao-query/general) <img src="https://img.shields.io/badge/Orchestrated by-Kubernetes-green.svg?logo=kubernetes" alt="shield referente ao uso de kubernetes">
+[<img src="https://img.shields.io/badge/dockerhub-images-blue.svg?logo=docker" alt="shield referente ao docker hub">](https://hub.docker.com/repository/docker/danielmaria/producao/general)
+[![Security Rating](https://sonarcloud.io/api/project_badges/measure?project=postech-lanchonete_producao&metric=security_rating)](https://sonarcloud.io/summary/new_code?id=postech-lanchonete_producao)
+[![Coverage](https://sonarcloud.io/api/project_badges/measure?project=postech-lanchonete_producao&metric=coverage)](https://sonarcloud.io/summary/new_code?id=postech-lanchonete_producao)
+[![Lines of Code](https://sonarcloud.io/api/project_badges/measure?project=postech-lanchonete_producao&metric=ncloc)](https://sonarcloud.io/summary/new_code?id=postech-lanchonete_producao)
 
-[![Security Rating](https://sonarcloud.io/api/project_badges/measure?project=postech-lanchonete_postech-lanchonete-producao-query&metric=security_rating)](https://sonarcloud.io/summary/new_code?id=postech-lanchonete_postech-lanchonete-producao-query)
-[![Coverage](https://sonarcloud.io/api/project_badges/measure?project=postech-lanchonete_postech-lanchonete-producao-query&metric=coverage)](https://sonarcloud.io/summary/new_code?id=postech-lanchonete_postech-lanchonete-producao-query)
-[![Lines of Code](https://sonarcloud.io/api/project_badges/measure?project=postech-lanchonete_postech-lanchonete-producao-query&metric=ncloc)](https://sonarcloud.io/summary/new_code?id=postech-lanchonete_postech-lanchonete-producao-query)
-[![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=postech-lanchonete_postech-lanchonete-producao-query&metric=alert_status)](https://sonarcloud.io/summary/new_code?id=postech-lanchonete_postech-lanchonete-producao-query)
 ____
 
-Este microserviço desempenha um papel crucial na arquitetura CQRS (Command Query Responsibility Segregation) do ecossistema da lanchonete, concentrando-se na responsabilidade de consultas e leituras relacionadas à produção de lanches.
-
-## Funcionalidades Principais
-Acompanhamento de Produção: Este microserviço permite o acompanhamento em tempo real do estado de produção de pedidos, fornecendo informações detalhadas sobre o status de cada etapa no processo de preparo.
-
-Fila de Pedidos: Mantém uma visão atualizada da fila de pedidos, permitindo uma gestão eficiente das prioridades e tempos de entrega, proporcionando uma experiência mais ágil para os clientes.
+Este microserviço desempenha um papel central na gestão da produção de pedidos, fornecendo funcionalidades essenciais para a lanchonete. Sua principal responsabilidade é buscar os pedidos que estão em produção, 
+permitindo uma visão clara do status de cada pedido em tempo real. Além disso, oferece a capacidade de adicionar novos pedidos à fila de produção e modificar os status existentes, garantindo uma gestão eficiente e ágil do fluxo de trabalho da lanchonete.
 
 ## Pipeline
 
