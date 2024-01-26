@@ -14,4 +14,4 @@ COPY --from=builder /app/build/libs/postech-producao-1.0.0-POC.jar .
 
 EXPOSE 8080
 
-CMD ["java", "-jar", "lanchonetebairro-1.0.0-POC.jar"]
+CMD ["java", "-jar", "postech-producao-1.0.0-POC.jar"]
