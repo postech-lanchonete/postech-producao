@@ -31,9 +31,9 @@ public class PedidoMudarStatusUseCase implements UseCase<Long, Pedido> {
 
     private void mudarStatus(Pedido pedido) {
         switch (pedido.getStatus()) {
-            case StatusDoPedido.RECEBIDO -> pedido.setStatus(StatusDoPedido.EM_PREPARACAO);
-            case StatusDoPedido.EM_PREPARACAO -> pedido.setStatus(StatusDoPedido.PRONTO);
-            case StatusDoPedido.PRONTO -> pedido.setStatus(StatusDoPedido.FINALIZADO);
+            case RECEBIDO -> pedido.setStatus(StatusDoPedido.EM_PREPARACAO);
+            case EM_PREPARACAO -> pedido.setStatus(StatusDoPedido.PRONTO);
+            case PRONTO -> pedido.setStatus(StatusDoPedido.FINALIZADO);
             default -> {
                 // Manter o status em FINALIZADO
             }
