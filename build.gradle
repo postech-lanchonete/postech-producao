@@ -128,8 +128,8 @@ sonar {
 	properties {
 		property 'sonar.host.url', 'https://sonarcloud.io'
 		property 'sonar.organization', 'postech-lanchonete'
-		property 'sonar.projectKey', 'postech-lanchonete_producao'
-		property 'sonar.projectName', 'producao'
+		property 'sonar.projectKey', 'postech-lanchonete_postech-producao'
+		property 'sonar.projectName', 'postech-producao'
 		property 'sonar.sources', 'src/main'
 		property 'sonar.tests', 'src/test'
 		property 'sonar.jacoco.reportPaths', 'build/reports/jacoco/jacoco.xml'
