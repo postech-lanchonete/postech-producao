@@ -15,7 +15,7 @@ import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
 @SpringBootTest
-public class PedidoCriarUseCaseTest {
+class PedidoCriarUseCaseTest {
 
     @Mock
     private PedidoGateway pedidoGateway;
@@ -24,7 +24,7 @@ public class PedidoCriarUseCaseTest {
     private PedidoCriarUseCase pedidoCriarUseCase;
 
     @Test
-    public void testCriarPedido() {
+    void testCriarPedido() {
         Pedido pedido = new Pedido();
         Pedido pedidoMock = new Pedido();
         pedidoMock.setStatus(StatusDoPedido.RECEBIDO);

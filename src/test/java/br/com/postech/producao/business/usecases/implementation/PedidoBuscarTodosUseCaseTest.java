@@ -19,7 +19,7 @@ import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
 @SpringBootTest
-public class PedidoBuscarTodosUseCaseTest {
+class PedidoBuscarTodosUseCaseTest {
 
     @Mock
     private PedidoGateway pedidoGateway;
@@ -28,7 +28,7 @@ public class PedidoBuscarTodosUseCaseTest {
     private PedidoBuscarTodosUseCase pedidoBuscarTodosUseCase;
 
     @Test
-    public void testBuscarTodosPedidos() {
+    void testBuscarTodosPedidos() {
         Pedido pedido = new Pedido();
         List<Pedido> pedidosMock = Arrays.asList(pedido);
 
@@ -41,7 +41,7 @@ public class PedidoBuscarTodosUseCaseTest {
     }
 
     @Test
-    public void testBuscarTodosPedidosSemResultados() {
+    void testBuscarTodosPedidosSemResultados() {
         when(pedidoGateway.buscarPor(any(Example.class))).thenReturn(Collections.emptyList());
 
         List<Pedido> result = pedidoBuscarTodosUseCase.realizar(new Pedido());

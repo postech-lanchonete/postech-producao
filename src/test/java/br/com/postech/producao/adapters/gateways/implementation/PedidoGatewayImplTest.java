@@ -19,7 +19,7 @@ import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
 @ExtendWith(MockitoExtension.class)
-public class PedidoGatewayImplTest {
+class PedidoGatewayImplTest {
 
     @Mock
     private PedidoRepository pedidoRepository;
@@ -28,7 +28,7 @@ public class PedidoGatewayImplTest {
     private PedidoGatewayImpl pedidoGatewayImpl;
 
     @Test
-    public void testBuscarPorExample() {
+    void testBuscarPorExample() {
         Pedido pedido = new Pedido();
         Example<Pedido> pedidoExample = Example.of(pedido);
         List<Pedido> expectedPedidos = Arrays.asList(new Pedido(), new Pedido());
@@ -42,7 +42,7 @@ public class PedidoGatewayImplTest {
     }
 
     @Test
-    public void testSalvar() {
+    void testSalvar() {
         Pedido pedido = new Pedido();
 
         when(pedidoRepository.save(pedido)).thenReturn(pedido);
@@ -54,7 +54,7 @@ public class PedidoGatewayImplTest {
     }
 
     @Test
-    public void testBuscarPorIdPedidoExistente() {
+    void testBuscarPorIdPedidoExistente() {
         Long id = 1L;
         Pedido expectedPedido = new Pedido();
 

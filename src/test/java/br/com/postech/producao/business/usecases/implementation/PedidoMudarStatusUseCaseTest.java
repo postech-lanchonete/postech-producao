@@ -20,7 +20,7 @@ import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
 @SpringBootTest
-public class PedidoMudarStatusUseCaseTest {
+class PedidoMudarStatusUseCaseTest {
 
     @Mock
     private PedidoGateway pedidoGateway;
@@ -32,7 +32,7 @@ public class PedidoMudarStatusUseCaseTest {
     private PedidoMudarStatusUseCase pedidoMudarStatusUseCase;
 
     @Test
-    public void testMudarStatusParaEmPreparacao() {
+    void testMudarStatusParaEmPreparacao() {
         Pedido pedido = new Pedido();
         pedido.setStatus(StatusDoPedido.RECEBIDO);
         pedido.setCliente(new Cliente());
@@ -47,7 +47,7 @@ public class PedidoMudarStatusUseCaseTest {
     }
 
     @Test
-    public void testMudarStatusParaPronto() {
+    void testMudarStatusParaPronto() {
         Pedido pedido = new Pedido();
         pedido.setStatus(StatusDoPedido.EM_PREPARACAO);
         pedido.setCliente(new Cliente());
@@ -62,7 +62,7 @@ public class PedidoMudarStatusUseCaseTest {
     }
 
     @Test
-    public void testMudarStatusParaFinalizado() {
+    void testMudarStatusParaFinalizado() {
         Pedido pedido = new Pedido();
         pedido.setStatus(StatusDoPedido.FINALIZADO);
         pedido.setCliente(new Cliente());
@@ -77,7 +77,7 @@ public class PedidoMudarStatusUseCaseTest {
     }
 
     @Test
-    public void testMudarStatusParaFinalizadoSemNotificacao() {
+    void testMudarStatusParaFinalizadoSemNotificacao() {
         Pedido pedido = new Pedido();
         pedido.setStatus(StatusDoPedido.FINALIZADO);
         pedido.setCliente(new Cliente());
