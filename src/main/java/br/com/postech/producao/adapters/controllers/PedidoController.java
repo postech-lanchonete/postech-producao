@@ -2,11 +2,11 @@ package br.com.postech.producao.adapters.controllers;
 
 import br.com.postech.producao.adapters.adapter.PedidoAdapter;
 import br.com.postech.producao.adapters.dto.PedidoResponseDTO;
+import br.com.postech.producao.adapters.dto.requests.PedidoRequestDto;
 import br.com.postech.producao.business.usecases.UseCase;
+import br.com.postech.producao.core.entities.Pedido;
 import br.com.postech.producao.core.enums.StatusDoPedido;
 import br.com.postech.producao.drivers.web.PedidoAPI;
-import br.com.postech.producao.adapters.dto.requests.PedidoRequestDto;
-import br.com.postech.producao.core.entities.Pedido;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.http.HttpStatus;

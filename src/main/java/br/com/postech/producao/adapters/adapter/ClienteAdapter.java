@@ -1,8 +1,8 @@
 package br.com.postech.producao.adapters.adapter;
 
 import br.com.postech.producao.adapters.dto.ClienteDto;
-import br.com.postech.producao.core.entities.Cliente;
 import br.com.postech.producao.adapters.dto.CriacaoClienteDTO;
+import br.com.postech.producao.core.entities.Cliente;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 

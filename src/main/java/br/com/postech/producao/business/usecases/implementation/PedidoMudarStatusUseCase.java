@@ -39,5 +39,4 @@ public class PedidoMudarStatusUseCase implements UseCase<Long, Pedido> {
             }
         }
     }
-
 }
