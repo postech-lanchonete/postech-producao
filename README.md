@@ -2,14 +2,14 @@
 
 ##### versão 1.0.0-POC
 
-<img src="https://img.shields.io/badge/Java-17-important.svg?logo=java" alt="shield referente a versao do java">
-<img src="https://img.shields.io/badge/Build Tool-Gradle-green.svg?logo=gradle" alt="shield referente ao uso de gradle">
-
+<img src="https://img.shields.io/badge/Java-17-important.svg?logo=java" alt="shield referente a versao do java"><img src="https://img.shields.io/badge/Build Tool-Gradle-green.svg?logo=gradle" alt="shield referente ao uso de gradle">[<img src="https://img.shields.io/badge/dockerhub-images-blue.svg?logo=docker" alt="shield referente ao docker hub">](https://hub.docker.com/repository/docker/danielmaria/postech-producao/general) <img src="https://img.shields.io/badge/Orchestrated by-Kubernetes-green.svg?logo=kubernetes" alt="shield referente ao uso de kubernetes">
 [<img src="https://img.shields.io/badge/dockerhub-images-blue.svg?logo=docker" alt="shield referente ao docker hub">](https://hub.docker.com/repository/docker/danielmaria/postech-producao/general)
-[![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=postech-lanchonete_postech-lanchonete-producao&metric=alert_status)](https://sonarcloud.io/summary/new_code?id=postech-lanchonete_postech-lanchonete-producao)
-[![Security Rating](https://sonarcloud.io/api/project_badges/measure?project=postech-lanchonete_postech-lanchonete-producao&metric=security_rating)](https://sonarcloud.io/summary/new_code?id=postech-lanchonete_postech-lanchonete-producao)
-[![Coverage](https://sonarcloud.io/api/project_badges/measure?project=postech-lanchonete_postech-lanchonete-producao&metric=coverage)](https://sonarcloud.io/summary/new_code?id=postech-lanchonete_postech-lanchonete-producao)
-[![Lines of Code](https://sonarcloud.io/api/project_badges/measure?project=postech-lanchonete_postech-lanchonete-producao&metric=ncloc)](https://sonarcloud.io/summary/new_code?id=postech-lanchonete_postech-lanchonete-producao)
+[![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=postech-lanchonete_postech-producao&metric=alert_status)](https://sonarcloud.io/summary/new_code?id=postech-lanchonete_postech-producao)
+[![Coverage](https://sonarcloud.io/api/project_badges/measure?project=postech-lanchonete_postech-producao&metric=coverage)](https://sonarcloud.io/summary/new_code?id=postech-lanchonete_postech-producao)
+[![Lines of Code](https://sonarcloud.io/api/project_badges/measure?project=postech-lanchonete_postech-producao&metric=ncloc)](https://sonarcloud.io/summary/new_code?id=postech-lanchonete_postech-producao)
+[![Code Smells](https://sonarcloud.io/api/project_badges/measure?project=postech-lanchonete_postech-producao&metric=code_smells)](https://sonarcloud.io/summary/new_code?id=postech-lanchonete_postech-producao)
+
+
 ____
 
 <p align="justify">
