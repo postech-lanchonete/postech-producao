@@ -12,6 +12,7 @@ import java.util.List;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
+@SuppressWarnings("unused")
 public class PedidoRequestDto {
     private ClienteDto cliente;
     private List<ProdutoRequestDto> produtos;

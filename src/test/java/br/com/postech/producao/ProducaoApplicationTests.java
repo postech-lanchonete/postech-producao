@@ -8,7 +8,7 @@ import org.springframework.context.ApplicationContext;
 import static org.assertj.core.api.Assertions.assertThat;
 
 @SpringBootTest
-public class ProducaoApplicationTests {
+class ProducaoApplicationTests {
 
 	@Autowired
 	private ApplicationContext context;
