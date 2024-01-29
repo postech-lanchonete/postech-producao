@@ -4,6 +4,7 @@
 
 <img src="https://img.shields.io/badge/Java-17-important.svg?logo=java" alt="shield referente a versao do java"><img src="https://img.shields.io/badge/Build Tool-Gradle-green.svg?logo=gradle" alt="shield referente ao uso de gradle">[<img src="https://img.shields.io/badge/dockerhub-images-blue.svg?logo=docker" alt="shield referente ao docker hub">](https://hub.docker.com/repository/docker/danielmaria/postech-producao/general) <img src="https://img.shields.io/badge/Orchestrated by-Kubernetes-green.svg?logo=kubernetes" alt="shield referente ao uso de kubernetes">
 [<img src="https://img.shields.io/badge/dockerhub-images-blue.svg?logo=docker" alt="shield referente ao docker hub">](https://hub.docker.com/repository/docker/danielmaria/postech-producao/general)
+
 [![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=postech-lanchonete_postech-producao&metric=alert_status)](https://sonarcloud.io/summary/new_code?id=postech-lanchonete_postech-producao)
 [![Coverage](https://sonarcloud.io/api/project_badges/measure?project=postech-lanchonete_postech-producao&metric=coverage)](https://sonarcloud.io/summary/new_code?id=postech-lanchonete_postech-producao)
 [![Lines of Code](https://sonarcloud.io/api/project_badges/measure?project=postech-lanchonete_postech-producao&metric=ncloc)](https://sonarcloud.io/summary/new_code?id=postech-lanchonete_postech-producao)
@@ -23,7 +24,7 @@ permitindo uma visão clara do status de cada pedido em tempo real. Além disso,
 </p>
 
 <p align="center">
-  <img src="https://github.com/postech_lanchonete/postech_lanchonete-pedido/assets/20681811/15ad5f82-7b39-43d9-8f4b-b0778f9daeb2" />
+  <img src="https://github.com/postech-lanchonete/postech-producao/assets/20681811/418dadbe-1c19-4489-8bf9-11d90a6d165e" />
 </p>
 
 
@@ -38,22 +39,16 @@ A estrutura geral do projeto pode ser vista a seguir:
 |  ├── java
 |  |  └── br
 |  |     └── com
-|  |        └── lanchonetebairro
-|  |           ├── applicationrules <- 2. Application Business Rules
+|  |        └── postech.pagamento
+|  |           ├── business <- 2. Application Business Rules
 |  |           |  ├── exceptions
 |  |           |  └── usecases
-|  |           |        ├── cliente
-|  |           |        ├── pedido
-|  |           |        └── produto
-|  |           ├── enterpriserules <- 1. Enterprise Business Rules
+|  |           ├── core <- 1. Enterprise Business Rules
 |  |           |  ├── entities
 |  |           |  └── enums
-|  |           ├── frameworksdrivers <- 4. Frameworks & Drivers
-|  |           |  ├── external
-|  |           |  |  ├── notificacao
-|  |           |  |  └── pagamento
+|  |           ├── drivers <- 4. Frameworks & Drivers
 |  |           |  └── web
-|  |           └── interfaceadapters <- 3. Interface Adapters
+|  |           └── adapters <- 3. Interface Adapters
 |  |              ├── adapter
 |  |              ├── controllers
 |  |              ├── dto
@@ -65,7 +60,16 @@ A estrutura geral do projeto pode ser vista a seguir:
   <summary>Explicação das camadas</summary>
 As camadas do projeto foram divididas seguindo a logica proposta pela arquitetura limpa, sendo 4 as prinipais assinaladas na árvore de estrutura acima.
 
-1. **Enterprise Business Rules:** Esta camada contém regras de negócios de alto nível e princípios que são específicos para a organização ou domínio de negócios.
+1. **Core:** Esta camada contém regras de negócios de alto nível e princípios que são específicos para a organização ou domínio de negócios.
+2. **Business**: Aqui, você encontra as regras de negócios da aplicação, que são específicas para a aplicação em si, independentemente do domínio de negócios. É onde a lógica de negócios central é implementada.
+3. **Adapters**: Esta camada lida com a interação entre a aplicação e o mundo exterior. Inclui adaptadores para interfaces de usuário, bancos de dados, serviços externos e qualquer outra coisa que não seja parte da aplicação em si.
+4. **Drivers**: É onde você integra frameworks, bibliotecas e drivers externos necessários para executar a aplicação. Isso inclui o banco de dados, frameworks web, ferramentas de comunicação e assim por diante. É a fronteira entre a aplicação e o ambiente externo.
+
+<details>
+  <summary>Explicação das camadas</summary>
+As camadas do projeto foram divididas seguindo a logica proposta pela arquitetura limpa, sendo 4 as prinipais assinaladas na árvore de estrutura acima.
+
+1. **enterpriserules:** Esta camada contém regras de negócios de alto nível e princípios que são específicos para a organização ou domínio de negócios.
 2. **Application Business Rules**: Aqui, você encontra as regras de negócios da aplicação, que são específicas para a aplicação em si, independentemente do domínio de negócios. É onde a lógica de negócios central é implementada.
 3. **Interface Adapters**: Esta camada lida com a interação entre a aplicação e o mundo exterior. Inclui adaptadores para interfaces de usuário, bancos de dados, serviços externos e qualquer outra coisa que não seja parte da aplicação em si.
 4. **Frameworks & Drivers**: É onde você integra frameworks, bibliotecas e drivers externos necessários para executar a aplicação. Isso inclui o banco de dados, frameworks web, ferramentas de comunicação e assim por diante. É a fronteira entre a aplicação e o ambiente externo.
