@@ -67,14 +67,11 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v2
 
-      - name: Pull da Imagem do Docker Hub
-        run: echo "Simulando o pull da imagem do Docker Hub."
+      - name: Simulando Pull da Imagem do Docker Hub
+        run: echo "docker pull seurepositorio/postech-producao:latest"
 
-      - name: Exclusão do Container Antigo
-        run: echo "Simulando a exclusão do container antigo."
+      - name: Simulando Configuração AWS CLI
+        run: echo "aws configure set aws_access_key_id {{ secrets.AWS_ACCESS_KEY_ID }} && aws configure set aws_secret_access_key {{ secrets.AWS_SECRET_ACCESS_KEY }} && aws configure set default.region us-east-1"
 
-      - name: Execução do Novo Container Docker
-        run: echo "Simulando a execução do novo container Docker."
-
-      - name: Limpeza
-        run: echo "Simulando passos de limpeza."
+      - name: Simulando Atualização do Manifesto do K8s
+        run: echo "kubectl set image deployment/postech-producao container=danielmaria/postech-producao:latest"
