@@ -10,7 +10,7 @@ import org.springframework.web.client.HttpClientErrorException;
 import org.springframework.web.client.RestTemplate;
 
 public class RequestHelper<T> {
-    private final static String baseUrl = "http://localhost:8080";
+    private final static String baseUrl = "http://localhost:8083";
     private final static RestTemplate restTemplate = new RestTemplate();
 
     private ResponseEntity<T> successResponse;

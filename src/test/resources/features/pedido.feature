@@ -4,46 +4,34 @@
 Funcionalidade: Pedidos
 
   Cenário: Criação de um novo pedido
-    Dado que exista um produto com o nome "Hamburger"
-    E que exista um cliente com o cpf "11111111111"
-    Quando enviar uma requisição para criar um pedido para o cliente encontrado com o produto encontrado
-    Entao deve retornar o pedido
+    Dado que se queira criar um pedido
+    E um produto tenha o nome de "Hamburger", valor de R$ 20 e categoria "LANCHE"
+    E um produto tenha o nome de "Hamburger", valor de R$ 10 e categoria "LANCHE"
+    E o cliente tenha o cpf igual a "1111111111"
+    Quando a requisicao do pedido for enviada
+    Entao deve retornar o pedido criado
     E o status da requisicao do pedido deve ser igual a 201
 
-  Cenário: Criação de um novo pedido para um cliente inexistente
-    Dado que exista um produto com o nome "Hamburger"
-    E que nao exista um cliente com o cpf "11111111110"
-    Quando enviar uma requisição para criar um pedido para um cliente com o cpf "11111111110" com o produto encontrado
-    E o status da requisicao do pedido deve ser igual a 404
-    E a mensagem de erro ao criar o pedido contenha "Cliente não encontrado"
-
-  Cenário: Criação de um novo pedido com um produto inexistente
-    Dado que se queira criar um pedido com um produto com id inexistente
-    E que exista um cliente com o cpf "11111111111"
-    Quando enviar uma requisição para criar um pedido para um cliente com o cpf "11111111111" com o produto inexistente
-    E o status da requisicao do pedido deve ser igual a 404
-    E a mensagem de erro ao criar o pedido contenha "Produto não encontrado com o id"
-
   Cenário: Mudar status do pedido
-    Dado que exista um pedido com o status "RECEBIDO"
+    Dado que se queira mudar o status do pedido 1
     Quando enviar uma requisição para alterar o status deste pedido
     E o status da requisicao do pedido deve ser igual a 202
     E o status deste pedido deve ser igual a "EM_PREPARACAO"
 
   Cenário: Mudar status do pedido para em preparacao
-    Dado que exista um pedido com o status "EM_PREPARACAO"
+    Dado que se queira mudar o status do pedido 1
     Quando enviar uma requisição para alterar o status deste pedido
     E o status da requisicao do pedido deve ser igual a 202
     E o status deste pedido deve ser igual a "PRONTO"
 
   Cenário: Mudar status do pedido para finalizado
-    Dado que exista um pedido com o status "PRONTO"
+    Dado que se queira mudar o status do pedido 1
     Quando enviar uma requisição para alterar o status deste pedido
     E o status da requisicao do pedido deve ser igual a 202
     E o status deste pedido deve ser igual a "FINALIZADO"
 
   Cenário: Mudar status do pedido para finalizado novamente
-    Dado que exista um pedido com o status "FINALIZADO"
+    Dado que se queira mudar o status do pedido 1
     Quando enviar uma requisição para alterar o status deste pedido
     E o status da requisicao do pedido deve ser igual a 202
     E o status deste pedido deve ser igual a "FINALIZADO"

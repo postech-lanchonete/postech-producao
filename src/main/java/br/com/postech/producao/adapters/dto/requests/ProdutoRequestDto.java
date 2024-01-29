@@ -21,7 +21,6 @@ public class ProdutoRequestDto {
     @Schema(description = "Categoria do produto.", enumAsRef = true)
     private CategoriaProduto categoria;
 
-    @NotBlank(message = "Imagem do produto é mandatoria")
     @Schema(description = "Imagem do produto em BLOB.")
     private String imagem;
 

@@ -23,10 +23,8 @@ public class Cliente {
 
     private String sobrenome;
 
-    @Column(unique = true)
     private String cpf;
 
-    @Column(unique = true)
     private String email;
 
 }
