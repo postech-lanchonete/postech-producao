@@ -6,7 +6,7 @@ import java.util.Arrays;
 import java.util.stream.Collectors;
 
 public enum StatusDoPedido {
-    RECEBIDO, EM_PREPARACAO, PRONTO, FINALIZADO;
+    PENDENTE, RECEBIDO, EM_PREPARACAO, PRONTO, FINALIZADO, CANCELADO;
 
     public static StatusDoPedido encontrarEnumPorString(String valor) {
         return Arrays.stream(StatusDoPedido.values())
