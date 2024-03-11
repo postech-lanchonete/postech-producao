@@ -1,6 +1,7 @@
 package br.com.postech.producao.adapters.input.subscribers;
 
 import br.com.postech.producao.adapters.gateways.ProducaoGateway;
+import br.com.postech.producao.business.exceptions.BadRequestException;
 import br.com.postech.producao.business.usecases.UseCase;
 import br.com.postech.producao.core.entities.Pedido;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -34,7 +35,7 @@ public class ProducaoSubscriber {
             producaoGateway.atualizarPedido(pedidoCrido);
         } catch (Exception e) {
             log.error("Erro ao processar a mensagem JSON: " + e.getMessage());
-            throw new RuntimeException(e);
+            throw new BadRequestException(e.getMessage());
         }
     }
 }

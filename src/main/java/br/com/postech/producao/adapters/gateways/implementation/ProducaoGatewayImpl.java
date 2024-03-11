@@ -1,6 +1,7 @@
 package br.com.postech.producao.adapters.gateways.implementation;
 
 import br.com.postech.producao.adapters.gateways.ProducaoGateway;
+import br.com.postech.producao.business.exceptions.BadRequestException;
 import br.com.postech.producao.core.entities.Pedido;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -29,10 +30,10 @@ public class ProducaoGatewayImpl implements ProducaoGateway {
             kafkaTemplate.send(TOPIC_PRODUCAO_OUT, jsonPagamento);
         } catch (JsonProcessingException e) {
             log.error("Erro ao serializar o objeto Pedido para JSON", e);
-            throw new RuntimeException("Erro ao serializar o objeto Pedido para JSON", e);
+            throw new BadRequestException("Erro ao serializar o objeto Pedido para JSON");
         } catch (Exception e) {
             log.error("Erro ao enviar o Pedido para o Kafka", e);
-            throw new RuntimeException("Erro ao enviar o Pedido para producao ", e);
+            throw new BadRequestException("Erro ao enviar o Pedido para producao ");
         }
     }
 }
