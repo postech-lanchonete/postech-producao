@@ -17,11 +17,9 @@ public class PedidoCriarUseCase implements UseCase<Pedido, Pedido> {
     }
 
     @Override
-    @Transactional
     public Pedido realizar(Pedido pedido) {
         pedido.setStatus(StatusDoPedido.RECEBIDO);
-        pedidoGateway.salvar(pedido);
-        return pedido;
+        return pedidoGateway.salvar(pedido);
     }
 
 }

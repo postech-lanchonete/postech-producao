@@ -1,7 +1,7 @@
 package br.com.postech.producao.business.usecases.implementation;
 
+import br.com.postech.producao.adapters.dto.requests.MudarStatusRequestDto;
 import br.com.postech.producao.adapters.gateways.PedidoGateway;
-import br.com.postech.producao.core.entities.Cliente;
 import br.com.postech.producao.core.entities.Pedido;
 import br.com.postech.producao.core.enums.StatusDoPedido;
 import br.com.postech.producao.drivers.external.notificacao.NotificacaoClientePort;
@@ -31,63 +31,77 @@ class PedidoMudarStatusUseCaseTest {
     @InjectMocks
     private PedidoMudarStatusUseCase pedidoMudarStatusUseCase;
 
+
+
     @Test
     void testMudarStatusParaEmPreparacao() {
         Pedido pedido = new Pedido();
         pedido.setStatus(StatusDoPedido.RECEBIDO);
-        pedido.setCliente(new Cliente());
-
+        pedido.setIdCliente(1L);
         when(pedidoGateway.buscarPorId(anyLong())).thenReturn(pedido);
 
-        Pedido result = pedidoMudarStatusUseCase.realizar(1L);
+        MudarStatusRequestDto dto = new MudarStatusRequestDto();
+        dto.setId(1L);
+        dto.setStatusDoPedido(StatusDoPedido.EM_PREPARACAO);
+
+        Pedido result = pedidoMudarStatusUseCase.realizar(dto);
 
         assertEquals(StatusDoPedido.EM_PREPARACAO, result.getStatus());
         verify(pedidoGateway, times(1)).salvar(any(Pedido.class));
-        verify(notificacaoClientePort, never()).notificaCliente(any(Cliente.class), anyString());
+        verify(notificacaoClientePort, never()).notificaCliente(any(), anyString());
     }
 
     @Test
     void testMudarStatusParaPronto() {
         Pedido pedido = new Pedido();
         pedido.setStatus(StatusDoPedido.EM_PREPARACAO);
-        pedido.setCliente(new Cliente());
+        pedido.setIdCliente(1L);
 
         when(pedidoGateway.buscarPorId(anyLong())).thenReturn(pedido);
 
-        Pedido result = pedidoMudarStatusUseCase.realizar(1L);
+        MudarStatusRequestDto dto = new MudarStatusRequestDto();
+        dto.setId(1L);
+
+        Pedido result = pedidoMudarStatusUseCase.realizar(dto);
 
         assertEquals(StatusDoPedido.PRONTO, result.getStatus());
         verify(pedidoGateway, times(1)).salvar(any(Pedido.class));
-        verify(notificacaoClientePort, times(1)).notificaCliente(any(Cliente.class), anyString());
+        verify(notificacaoClientePort, times(1)).notificaCliente(any(), anyString());
     }
 
     @Test
     void testMudarStatusParaFinalizado() {
         Pedido pedido = new Pedido();
         pedido.setStatus(StatusDoPedido.FINALIZADO);
-        pedido.setCliente(new Cliente());
+        pedido.setIdCliente(1L);
 
         when(pedidoGateway.buscarPorId(anyLong())).thenReturn(pedido);
 
-        Pedido result = pedidoMudarStatusUseCase.realizar(1L);
+        MudarStatusRequestDto dto = new MudarStatusRequestDto();
+        dto.setId(1L);
+
+        Pedido result = pedidoMudarStatusUseCase.realizar(dto);
 
         assertEquals(StatusDoPedido.FINALIZADO, result.getStatus());
         verify(pedidoGateway, times(1)).salvar(any(Pedido.class));
-        verify(notificacaoClientePort, never()).notificaCliente(any(Cliente.class), anyString());
+        verify(notificacaoClientePort, never()).notificaCliente(any(), anyString());
     }
 
     @Test
     void testMudarStatusParaFinalizadoSemNotificacao() {
         Pedido pedido = new Pedido();
         pedido.setStatus(StatusDoPedido.FINALIZADO);
-        pedido.setCliente(new Cliente());
+        pedido.setIdCliente(1L);
 
         when(pedidoGateway.buscarPorId(anyLong())).thenReturn(pedido);
 
-        Pedido result = pedidoMudarStatusUseCase.realizar(1L);
+        MudarStatusRequestDto dto = new MudarStatusRequestDto();
+        dto.setId(1L);
+
+        Pedido result = pedidoMudarStatusUseCase.realizar(dto);
 
         assertEquals(StatusDoPedido.FINALIZADO, result.getStatus());
         verify(pedidoGateway, times(1)).salvar(any(Pedido.class));
-        verify(notificacaoClientePort, never()).notificaCliente(any(Cliente.class), anyString());
+        verify(notificacaoClientePort, never()).notificaCliente(any(), anyString());
     }
 }

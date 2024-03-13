@@ -1,5 +1,6 @@
 package br.com.postech.producao.business.usecases.implementation;
 
+import br.com.postech.producao.adapters.dto.requests.MudarStatusRequestDto;
 import br.com.postech.producao.adapters.gateways.PedidoGateway;
 import br.com.postech.producao.business.usecases.UseCase;
 import br.com.postech.producao.core.entities.Pedido;
@@ -8,7 +9,7 @@ import br.com.postech.producao.drivers.external.notificacao.NotificacaoClientePo
 import org.springframework.stereotype.Component;
 
 @Component("pedidoMudarStatusUseCase")
-public class PedidoMudarStatusUseCase implements UseCase<Long, Pedido> {
+public class PedidoMudarStatusUseCase implements UseCase<MudarStatusRequestDto, Pedido> {
 
     private final PedidoGateway pedidoGateway;
     private final NotificacaoClientePort notificacaoClientePort;
@@ -19,12 +20,16 @@ public class PedidoMudarStatusUseCase implements UseCase<Long, Pedido> {
     }
 
     @Override
-    public Pedido realizar(Long id) {
-        Pedido pedido = pedidoGateway.buscarPorId(id);
-        this.mudarStatus(pedido);
+    public Pedido realizar(MudarStatusRequestDto dto) {
+        Pedido pedido = pedidoGateway.buscarPorId(dto.getId());
+        if (dto.getStatusDoPedido() != null) {
+            pedido.setStatus(dto.getStatusDoPedido());
+        } else {
+            this.mudarStatus(pedido);
+        }
         pedidoGateway.salvar(pedido);
         if (pedido.getStatus() == StatusDoPedido.PRONTO) {
-            notificacaoClientePort.notificaCliente(pedido.getCliente(), "Seu pedido está pronto. Venha buscar!");
+            notificacaoClientePort.notificaCliente(pedido.getIdCliente(), "Seu pedido está pronto. Venha buscar!");
         }
         return pedido;
     }

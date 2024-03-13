@@ -13,6 +13,8 @@ import java.time.LocalDateTime;
 
 @Mapper(componentModel = "spring")
 public interface PedidoAdapter {
+    @Mapping(target = "cliente.id", source = "idCliente")
+
     PedidoResponseDTO toDto(Pedido pedido);
 
     default Pedido toEntity(StatusDoPedido statusDoPedido){
@@ -24,6 +26,7 @@ public interface PedidoAdapter {
     @Mapping(target = "id", ignore = true)
     @Mapping(target = "status", ignore = true)
     @Mapping(target = "dataCriacao", ignore = true)
+    @Mapping(target = "idCliente", source = "cliente.id")
     Pedido toEntity(PedidoRequestDto requestDto);
 
     @AfterMapping
