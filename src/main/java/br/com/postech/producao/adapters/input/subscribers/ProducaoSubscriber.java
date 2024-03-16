@@ -1,7 +1,7 @@
 package br.com.postech.producao.adapters.input.subscribers;
 
+import br.com.postech.producao.adapters.gateways.DeadLetterQueueGateway;
 import br.com.postech.producao.adapters.gateways.ProducaoGateway;
-import br.com.postech.producao.business.exceptions.BadRequestException;
 import br.com.postech.producao.business.usecases.UseCase;
 import br.com.postech.producao.core.entities.Pedido;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -14,19 +14,23 @@ import org.springframework.stereotype.Component;
 @Component
 public class ProducaoSubscriber {
 
+    public static final String TOPIC_PRODUCAO_INPUT = "postech-producao-input";
+    public static final String TOPIC_PRODUCAO_INPUT_DLQ = "postech-producao-input-dlq";
     private final UseCase<Pedido, Pedido> criarUseCase;
     private final ProducaoGateway producaoGateway;
+    private final DeadLetterQueueGateway deadLetterQueueGateway;
     private final ObjectMapper objectMapper;
 
     public ProducaoSubscriber(@Qualifier("pedidoCriarUseCase") UseCase<Pedido, Pedido> criarUseCase,
-                              ProducaoGateway producaoGateway, ObjectMapper objectMapper) {
+                              ProducaoGateway producaoGateway, DeadLetterQueueGateway deadLetterQueueGateway, ObjectMapper objectMapper) {
         this.criarUseCase = criarUseCase;
         this.producaoGateway = producaoGateway;
+        this.deadLetterQueueGateway = deadLetterQueueGateway;
         this.objectMapper = objectMapper;
     }
 
 
-    @KafkaListener(topics = "postech-producao-input", groupId = "postech-group-producao")
+    @KafkaListener(topics = TOPIC_PRODUCAO_INPUT, groupId = "postech-group-producao")
     public void consumeSuccess(String value) {
         try {
             Pedido pedidoRecebido = objectMapper.readValue(value, Pedido.class);
@@ -35,7 +39,7 @@ public class ProducaoSubscriber {
             producaoGateway.atualizarPedido(pedidoCrido);
         } catch (Exception e) {
             log.error("Erro ao processar a mensagem JSON: " + e.getMessage());
-            throw new BadRequestException(e.getMessage());
+            this.deadLetterQueueGateway.enviar(TOPIC_PRODUCAO_INPUT_DLQ, value);
         }
     }
 }
