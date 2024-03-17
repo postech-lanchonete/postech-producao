@@ -1,11 +1,10 @@
 package br.com.postech.producao.business.usecases.implementation;
 
-import br.com.postech.producao.adapters.gateways.PedidoGateway;
+import br.com.postech.producao.drivers.external.PedidoGateway;
 import br.com.postech.producao.business.usecases.UseCase;
 import br.com.postech.producao.core.entities.Pedido;
 import br.com.postech.producao.core.enums.StatusDoPedido;
 import org.springframework.stereotype.Component;
-import org.springframework.transaction.annotation.Transactional;
 
 @Component("pedidoCriarUseCase")
 public class PedidoCriarUseCase implements UseCase<Pedido, Pedido> {

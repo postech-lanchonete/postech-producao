@@ -1,4 +1,4 @@
-package br.com.postech.producao.adapters.gateways.implementation;
+package br.com.postech.producao.adapters.gateways;
 
 import org.junit.jupiter.api.Test;
 import org.mockito.ArgumentCaptor;

@@ -1,6 +1,6 @@
-package br.com.postech.producao.adapters.gateways.implementation;
+package br.com.postech.producao.adapters.gateways;
 
-import br.com.postech.producao.adapters.gateways.PedidoGateway;
+import br.com.postech.producao.drivers.external.PedidoGateway;
 import br.com.postech.producao.adapters.repositories.PedidoRepository;
 import br.com.postech.producao.business.exceptions.NotFoundException;
 import br.com.postech.producao.core.entities.Pedido;

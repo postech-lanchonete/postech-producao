@@ -1,6 +1,6 @@
 package br.com.postech.producao.business.usecases.implementation;
 
-import br.com.postech.producao.adapters.gateways.PedidoGateway;
+import br.com.postech.producao.drivers.external.PedidoGateway;
 import br.com.postech.producao.business.usecases.UseCase;
 import br.com.postech.producao.core.entities.Pedido;
 import org.springframework.data.domain.Example;

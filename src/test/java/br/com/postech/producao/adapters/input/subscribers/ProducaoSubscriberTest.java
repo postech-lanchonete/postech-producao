@@ -1,7 +1,7 @@
 package br.com.postech.producao.adapters.input.subscribers;
 
-import br.com.postech.producao.adapters.gateways.DeadLetterQueueGateway;
-import br.com.postech.producao.adapters.gateways.ProducaoGateway;
+import br.com.postech.producao.drivers.external.DeadLetterQueueGateway;
+import br.com.postech.producao.drivers.external.ProducaoGateway;
 import br.com.postech.producao.business.usecases.implementation.PedidoCriarUseCase;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.jupiter.api.Test;

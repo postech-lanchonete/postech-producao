@@ -1,7 +1,7 @@
 package br.com.postech.producao.adapters.input.subscribers;
 
-import br.com.postech.producao.adapters.gateways.DeadLetterQueueGateway;
-import br.com.postech.producao.adapters.gateways.ProducaoGateway;
+import br.com.postech.producao.drivers.external.DeadLetterQueueGateway;
+import br.com.postech.producao.drivers.external.ProducaoGateway;
 import br.com.postech.producao.business.usecases.UseCase;
 import br.com.postech.producao.core.entities.Pedido;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -9,6 +9,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.kafka.annotation.KafkaListener;
 import org.springframework.stereotype.Component;
+import org.springframework.transaction.annotation.Transactional;
 
 @Slf4j
 @Component
@@ -29,7 +30,7 @@ public class ProducaoSubscriber {
         this.objectMapper = objectMapper;
     }
 
-
+    @Transactional
     @KafkaListener(topics = TOPIC_PRODUCAO_INPUT, groupId = "postech-group-producao")
     public void consumeSuccess(String value) {
         try {

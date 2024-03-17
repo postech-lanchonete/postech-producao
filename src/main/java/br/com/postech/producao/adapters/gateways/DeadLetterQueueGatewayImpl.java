@@ -1,6 +1,6 @@
-package br.com.postech.producao.adapters.gateways.implementation;
+package br.com.postech.producao.adapters.gateways;
 
-import br.com.postech.producao.adapters.gateways.DeadLetterQueueGateway;
+import br.com.postech.producao.drivers.external.DeadLetterQueueGateway;
 import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.stereotype.Component;
 
