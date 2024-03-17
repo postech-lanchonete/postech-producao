@@ -4,6 +4,7 @@
 
 <img src="https://img.shields.io/badge/Java-17-important.svg?logo=java" alt="shield referente a versao do java"><img src="https://img.shields.io/badge/Build Tool-Gradle-green.svg?logo=gradle" alt="shield referente ao uso de gradle">[<img src="https://img.shields.io/badge/dockerhub-images-blue.svg?logo=docker" alt="shield referente ao docker hub">](https://hub.docker.com/repository/docker/danielmaria/postech-producao/general) <img src="https://img.shields.io/badge/Orchestrated by-Kubernetes-green.svg?logo=kubernetes" alt="shield referente ao uso de kubernetes">
 [<img src="https://img.shields.io/badge/dockerhub-images-blue.svg?logo=docker" alt="shield referente ao docker hub">](https://hub.docker.com/repository/docker/danielmaria/postech-producao/general)
+
 [![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=postech-lanchonete_postech-producao&metric=alert_status)](https://sonarcloud.io/summary/new_code?id=postech-lanchonete_postech-producao)
 [![Coverage](https://sonarcloud.io/api/project_badges/measure?project=postech-lanchonete_postech-producao&metric=coverage)](https://sonarcloud.io/summary/new_code?id=postech-lanchonete_postech-producao)
 [![Lines of Code](https://sonarcloud.io/api/project_badges/measure?project=postech-lanchonete_postech-producao&metric=ncloc)](https://sonarcloud.io/summary/new_code?id=postech-lanchonete_postech-producao)
@@ -23,7 +24,7 @@ permitindo uma visão clara do status de cada pedido em tempo real. Além disso,
 </p>
 
 <p align="center">
-  <img src="https://github.com/postech_lanchonete/postech_lanchonete-pedido/assets/20681811/15ad5f82-7b39-43d9-8f4b-b0778f9daeb2" />
+  <img src="https://github.com/postech-lanchonete/postech-producao/assets/20681811/418dadbe-1c19-4489-8bf9-11d90a6d165e" />
 </p>
 
 
