@@ -1,4 +1,4 @@
-package br.com.postech.producao.adapters.gateways.implementation;
+package br.com.postech.producao.adapters.gateways;
 
 import br.com.postech.producao.adapters.repositories.PedidoRepository;
 import br.com.postech.producao.core.entities.Pedido;

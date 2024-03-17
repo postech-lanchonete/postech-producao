@@ -1,6 +1,6 @@
-package br.com.postech.producao.adapters.gateways.implementation;
+package br.com.postech.producao.adapters.gateways;
 
-import br.com.postech.producao.adapters.gateways.ProducaoGateway;
+import br.com.postech.producao.drivers.external.ProducaoGateway;
 import br.com.postech.producao.business.exceptions.BadRequestException;
 import br.com.postech.producao.core.entities.Pedido;
 import com.fasterxml.jackson.core.JsonProcessingException;

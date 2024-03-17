@@ -71,7 +71,7 @@ jobs:
         run: echo "docker pull danielmaria/postech-producao:latest"
 
       - name: Configuração AWS CLI
-        run: echo "aws configure set aws_access_key_id {{ secrets.AWS_ACCESS_KEY_ID }} && aws configure set aws_secret_access_key {{ secrets.AWS_SECRET_ACCESS_KEY }} && aws configure set default.region us-east-1"
+        run: echo "aws configure set aws_access_key_id ${{ secrets.AWS_ACCESS_KEY_ID }} && aws configure set aws_secret_access_key ${{ secrets.AWS_SECRET_ACCESS_KEY }} && aws configure set default.region us-east-1"
 
       - name: Atualização do Manifesto do K8s
         run: echo "kubectl set image deployment/postech-producao container=danielmaria/postech-producao:latest"

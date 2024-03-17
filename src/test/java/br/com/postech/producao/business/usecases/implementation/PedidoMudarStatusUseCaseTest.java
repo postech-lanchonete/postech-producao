@@ -1,10 +1,10 @@
 package br.com.postech.producao.business.usecases.implementation;
 
 import br.com.postech.producao.adapters.dto.requests.MudarStatusRequestDto;
-import br.com.postech.producao.adapters.gateways.PedidoGateway;
+import br.com.postech.producao.drivers.external.NotificacaoGateway;
+import br.com.postech.producao.drivers.external.PedidoGateway;
 import br.com.postech.producao.core.entities.Pedido;
 import br.com.postech.producao.core.enums.StatusDoPedido;
-import br.com.postech.producao.drivers.external.notificacao.NotificacaoClientePort;
 import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
@@ -26,7 +26,7 @@ class PedidoMudarStatusUseCaseTest {
     private PedidoGateway pedidoGateway;
 
     @Mock
-    private NotificacaoClientePort notificacaoClientePort;
+    private NotificacaoGateway notificacaoGateway;
 
     @InjectMocks
     private PedidoMudarStatusUseCase pedidoMudarStatusUseCase;
@@ -48,7 +48,7 @@ class PedidoMudarStatusUseCaseTest {
 
         assertEquals(StatusDoPedido.EM_PREPARACAO, result.getStatus());
         verify(pedidoGateway, times(1)).salvar(any(Pedido.class));
-        verify(notificacaoClientePort, never()).notificaCliente(any(), anyString());
+        verify(notificacaoGateway, never()).notificaCliente(any(), anyString());
     }
 
     @Test
@@ -66,7 +66,7 @@ class PedidoMudarStatusUseCaseTest {
 
         assertEquals(StatusDoPedido.PRONTO, result.getStatus());
         verify(pedidoGateway, times(1)).salvar(any(Pedido.class));
-        verify(notificacaoClientePort, times(1)).notificaCliente(any(), anyString());
+        verify(notificacaoGateway, times(1)).notificaCliente(any(), anyString());
     }
 
     @Test
@@ -84,7 +84,7 @@ class PedidoMudarStatusUseCaseTest {
 
         assertEquals(StatusDoPedido.FINALIZADO, result.getStatus());
         verify(pedidoGateway, times(1)).salvar(any(Pedido.class));
-        verify(notificacaoClientePort, never()).notificaCliente(any(), anyString());
+        verify(notificacaoGateway, never()).notificaCliente(any(), anyString());
     }
 
     @Test
@@ -102,6 +102,6 @@ class PedidoMudarStatusUseCaseTest {
 
         assertEquals(StatusDoPedido.FINALIZADO, result.getStatus());
         verify(pedidoGateway, times(1)).salvar(any(Pedido.class));
-        verify(notificacaoClientePort, never()).notificaCliente(any(), anyString());
+        verify(notificacaoGateway, never()).notificaCliente(any(), anyString());
     }
 }
