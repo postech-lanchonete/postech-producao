@@ -6,20 +6,30 @@ import br.com.postech.producao.drivers.external.PedidoGateway;
 import br.com.postech.producao.business.usecases.UseCase;
 import br.com.postech.producao.core.entities.Pedido;
 import br.com.postech.producao.core.enums.StatusDoPedido;
+import br.com.postech.producao.drivers.external.ProducaoGateway;
 import org.springframework.stereotype.Component;
+import org.springframework.transaction.annotation.Transactional;
 
 @Component("pedidoMudarStatusUseCase")
 public class PedidoMudarStatusUseCase implements UseCase<MudarStatusRequestDto, Pedido> {
 
     private final PedidoGateway pedidoGateway;
+
+    private final ProducaoGateway producaoGateway;
+
     private final NotificacaoGateway notificacaoGateway;
 
-    public PedidoMudarStatusUseCase(PedidoGateway pedidoGateway, NotificacaoGateway notificacaoGateway) {
+
+    public PedidoMudarStatusUseCase(PedidoGateway pedidoGateway,
+                                    ProducaoGateway producaoGateway,
+                                    NotificacaoGateway notificacaoGateway) {
         this.pedidoGateway = pedidoGateway;
+        this.producaoGateway = producaoGateway;
         this.notificacaoGateway = notificacaoGateway;
     }
 
     @Override
+    @Transactional
     public Pedido realizar(MudarStatusRequestDto dto) {
         Pedido pedido = pedidoGateway.buscarPorId(dto.getId());
         if (dto.getStatusDoPedido() != null) {
@@ -28,6 +38,7 @@ public class PedidoMudarStatusUseCase implements UseCase<MudarStatusRequestDto, 
             this.mudarStatus(pedido);
         }
         pedidoGateway.salvar(pedido);
+        producaoGateway.atualizarPedido(pedido);
         if (pedido.getStatus() == StatusDoPedido.PRONTO) {
             notificacaoGateway.notificaCliente(pedido.getIdCliente(), "Seu pedido está pronto. Venha buscar!");
         }
