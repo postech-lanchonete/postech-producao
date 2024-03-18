@@ -40,10 +40,11 @@ dependencies {
 	implementation 'org.springframework.boot:spring-boot-starter-actuator'
 	implementation 'org.springdoc:springdoc-openapi-starter-webmvc-ui:2.1.0'
 	implementation 'org.springdoc:springdoc-openapi-starter-webmvc-api:2.1.0'
+	implementation 'com.mysql:mysql-connector-j'
 	implementation 'org.springframework.kafka:spring-kafka:3.1.1'
 	implementation "org.mapstruct:mapstruct:${mapstructVersion}", "org.projectlombok:lombok:${lombokVersion}"
 	annotationProcessor "org.mapstruct:mapstruct-processor:${mapstructVersion}", "org.projectlombok:lombok:${lombokVersion}", "org.projectlombok:lombok-mapstruct-binding:${lombokMapstructBindingVersion}"
-	implementation 'org.hsqldb:hsqldb:2.7.1'
+	testImplementation 'org.hsqldb:hsqldb:2.7.1'
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
 	implementation 'org.jacoco:org.jacoco.core:0.8.7'
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
