@@ -5,6 +5,7 @@ import br.com.postech.producao.drivers.external.NotificacaoGateway;
 import br.com.postech.producao.drivers.external.PedidoGateway;
 import br.com.postech.producao.core.entities.Pedido;
 import br.com.postech.producao.core.enums.StatusDoPedido;
+import br.com.postech.producao.drivers.external.ProducaoGateway;
 import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
@@ -24,6 +25,9 @@ class PedidoMudarStatusUseCaseTest {
 
     @Mock
     private PedidoGateway pedidoGateway;
+
+    @Mock
+    private ProducaoGateway producaoGateway;
 
     @Mock
     private NotificacaoGateway notificacaoGateway;
