@@ -8,13 +8,22 @@ import br.com.postech.producao.core.enums.StatusDoPedido;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
+import org.mockito.Mock;
+import org.mockito.Mockito;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.kafka.core.KafkaTemplate;
+import org.springframework.test.context.DynamicPropertyRegistry;
+import org.springframework.test.context.DynamicPropertySource;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.transaction.annotation.Transactional;
+import org.testcontainers.containers.KafkaContainer;
+import org.testcontainers.junit.jupiter.Container;
+import org.testcontainers.junit.jupiter.Testcontainers;
+import org.testcontainers.utility.DockerImageName;
 
 import java.math.BigDecimal;
 import java.util.ArrayList;
@@ -32,10 +41,23 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @AutoConfigureMockMvc
 @Transactional
 @AutoConfigureTestDatabase
+@Testcontainers
 class PedidoControllerIntegrationTest {
+
+    @Container
+    static KafkaContainer kafkaContainer = new KafkaContainer(DockerImageName.parse("confluentinc/cp-kafka:latest"));
+
+
+    @DynamicPropertySource
+    static void kafkaProperties(DynamicPropertyRegistry registry) {
+        registry.add("spring.kafka.bootstrap-servers", kafkaContainer::getBootstrapServers);
+    }
 
     @Autowired
     private MockMvc mockMvc;
+
+    @Mock
+    private KafkaTemplate<String, String> kafkaTemplate;
 
     @Autowired
     private PedidoRepository pedidoRepository;
@@ -97,6 +119,7 @@ class PedidoControllerIntegrationTest {
     void mudarStatus_DeveAtualizarStatusParaEmPreparacao_QuandoPedidoExistirEStatusForRecebido() throws Exception {
         Produto produtoHamburguer = criarProduto("Hambúrguer", CategoriaProduto.LANCHE, BigDecimal.valueOf(32.5));
         Pedido pedido = criarPedido(new ArrayList<>(List.of(produtoHamburguer)), StatusDoPedido.RECEBIDO);
+        Mockito.when(kafkaTemplate.send(Mockito.any(), Mockito.any())).thenReturn(null);
 
         mockMvc.perform(patch("/v1/pedidos/{id}/status", pedido.getId()))
                 .andExpect(status().isAccepted())
